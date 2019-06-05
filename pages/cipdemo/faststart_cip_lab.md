@@ -12,6 +12,7 @@ applies_to: [developer,administrator,consumer]
 ===============
 
 ## Overview
+test
 
 During the CIP Bootcamp, you had the opportunity to get some hands on with the CIP Platform.  This exercise here is to provide you some more hands on with the platform and build your skills with the platform with the goal of creating a demo environment everyone is able to build and use on their own.
 
