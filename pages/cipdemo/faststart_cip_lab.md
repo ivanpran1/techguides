@@ -368,48 +368,35 @@ The orders flow can't be (easily) tested inside of the Assembly test view as it 
 
 ## Test the entire flow
 
-We will be using cURL to test the entire flow of the assets deployed today.  This is going to simulate what the mobile app would be doing at demo runtime by executing a series of steps in sequence.
+In this part, you will explore the consumer experience for APIs that have been exposed using API Connect. Using the Developer Portal, you will log in and subscribe to the API Product and test the APIs from the portal, before testing it in a live Web Application.
 
-These are samples only - you will need to update client id and secret references accordingly
+This part will show the following:
++ How to subscribe to a plan in order to consume an API.
++ How to test an API from the developer portal.
++ How to consume an API from a sample test application.
 
->**Note** you will need to recreate your client id and secret.  There is no portal deployed on this system, but you can re-create the client id and secret for the `Sandbox Test App` inside of API Connect.
+1. Launch the Developer Portal from your bookmarks if you have the link saved, otherwise you  can obtain the Developer Portal URL from the API Manager. Go to your Catalog (eg. `Sandbox`), from the `Settings` menu select `Portal` to show the configuration. Copy the URL.
+2. Open a new brower tab and paste the URL to launch the Developer Portal
 
+![](./images/cipdemo/portal.png)
 
-### PING - MAKE SURE THE SERVER IS ALIVE
+3. Click the `API Products` link
+4. Log in with the Developer account for your portal. Remember that this account is different from the credentials you use to log in to API Management
+5. Click the `API Products` link after logging in
+6. Select the API product you published in the prrevious part and click `Subscribe`
+7. As the result, the application is now subscribed to the product and its credentials are registered to use the Product APIs.
 
-```
-`curl -k -X GET \
-  https://apigw.10.0.0.5.nip.io/admin-admin/sandbox/api/Utilities/ping \
-  -H 'cache-control: no-cache' \
-  -H 'x-ibm-client-id: 5fa14472d2aa8f1ff5389ad20c1eed03' \
-  -H 'x-ibm-client-secret: ca0986b82a21e3af67bc19ef72b7bf99'
-```
+>In this section, you will use the Developer Portal to test the entire flow you created. This is useful for application developers to try the APIs before their application is fully developed or to simply see the expected response based on inputs they provide the API.
 
-Example Output:
-```
-{"ping":"Tue Jan 15 2019 22:08:20 GMT+0000 (UTC)"}
-```
-
-### CHECK INVENTORY - SUPPLY IT THE NAME OF THE IMAGE UPLOADED
-
-replace client id and secret with yours
-
-```
-curl -k -X GET \
-  'https://apigw.10.0.0.5.nip.io/admin-admin/sandbox/storeinventory/v1/retrieve?key=AJ1-05.jpg' \
-  -H 'cache-control: no-cache' \
-  -H 'x-ibm-client-id: 5fa14472d2aa8f1ff5389ad20c1eed03' \
-  -H 'x-ibm-client-secret: ca0986b82a21e3af67bc19ef72b7bf99'
-```
+1. Click the logistics AcmeMartUtilityAPI 1.0.0 link on the product page
+2. Check Inventory - Supply it the name of the image uploaded. Click the GET method of the API path on the left-hand navigation menu
 
 Example Output:
 ```
 {"Inventory":[{"color":"ultramarine color","location":"In Store","pictureFile":"AJ1-05","productDescription":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas nec mauris non cursus. Donec non justo lacinia, imperdiet nibh quis, laoreet ante. Sed quis luctus ligula. Donec urna libero, malesuada eu nibh vitae, facilisis pharetra quam. Donec ullamcorper porttitor bibendum. Nulla nec arcu nec metus auctor efficitur. Ut at magna condimentum, semper augue id, finibus tortor.\\n\\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas nec mauris non cursus. Donec non justo lacinia, imperdiet nibh quis, laoreet ante. Sed quis luctus ligula. Donec urna libero, malesuada eu nibh vitae, facilisis pharetra quam. Donec ullamcorper porttitor bibendum. Nulla nec arcu nec metus auctor efficitur. Ut at magna condimentum, semper augue id, finibus tortor.\\n\\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas nec mauris non cursus. Donec non justo lacinia, imperdiet nibh quis, laoreet ante. Sed quis luctus ligula. Donec urna libero, malesuada eu nibh vitae, facilisis pharetra quam. Donec ullamcorper porttitor bibendum. Nulla nec arcu nec metus auctor efficitur. Ut at magna condimentum, semper augue id, finibus tortor.\\n\\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas nec mauris non cursus. Donec non justo lacinia, imperdiet nibh quis, laoreet ante. Sed quis luctus ligula. Donec urna libero, malesuada eu nibh vitae, facilisis pharetra quam. Donec ullamcorper porttitor bibendum. Nulla nec arcu nec metus auctor efficitur. Ut at magna condimentum, semper augue id, finibus tortor.\\n\\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean egestas nec mauris non cursus. Donec non justo lacinia, imperdiet nibh quis, laoreet ante. Sed quis luctus ligula. Donec urna libero, malesuada eu nibh vitae, facilisis pharetra quam. Donec ullamcorper porttitor bibendum. Nulla nec arcu nec metus auctor efficitur. Ut at magna condimentum, semper augue id, finibus tortor.","productID":"AJ1-05","productName":"Blue & White","qtyOnHand":"1050","rating":"2","type":"AirJordan1","typeDescription":"Air Jordan 1 (Extra Crispy)","unitPrice":"105.99"}]}
 ```
 
-### ORDER A PRODUCT - USE THE PRODUCT ID SELECTED FROM THE CHECK INVENTORY CALL
-
-replace client and id and secret with yours
+4. Order a product - Use the product ID selected from the check inventory call
 
 ```
 curl -k -X POST \
@@ -440,7 +427,9 @@ Example Output:
 {"accountid":"A-10000","orderid":"6981359"}
 ```
 
-### CHECK EVENTS - USER THE ORDER ID FROM THE PREVIOUS CALL
+
+5. Check events - Use the order ID from the previous call
+
 
 Currently for this lab, events are being written to both Event Streams on your ICP and in the Cloud.  We're still working through some of the challenges with the ES on-premesis but we can still show events for the demo that are running on the IBM Cloud.  Execute this command to get a feel for what those look like.
 
@@ -455,6 +444,9 @@ Example Output:
 ```
 {"id":"f58d732c494dc8ce9c1d2dbdba8817dd","purchaseOrder":"5688471","shipTo":{"name":"Test Account","street":"1060 West Addison","city":"Chicago","state":"IL","zip":"60680"},"billTo":{"name":"Test Account","street":"1060 West Addison","city":"Chicago","state":"IL","zip":"60680"},"item":{"partNum":"AJ1-03","productName":"Red, Black & Green","quantity":"1","price":"103.99","shipDate":"2019-01-08T19:46:28.314Z"},"status_code":500,"last_update":"2019-01-08T19:56:01.479Z","history":[{"type":"initial","timestamp":"2019-01-08T19:46:29.350Z","topic":"kafka-nodejs-console-sample-topic","partition":0,"offset":334,"key":null},{"type":"update","timestamp":"2019-01-08T19:48:03.328Z","topic":"acmemart_update_order","partition":0,"offset":151,"key":[75,101,121]},{"type":"update","timestamp":"2019-01-08T19:50:01.362Z","topic":"acmemart_update_order","partition":0,"offset":153,"key":[75,101,121]},{"type":"update","timestamp":"2019-01-08T19:52:01.403Z","topic":"acmemart_update_order","partition":0,"offset":155,"key":[75,101,121]},{"type":"update","timestamp":"2019-01-08T19:54:01.438Z","topic":"acmemart_update_order","partition":0,"offset":157,"key":[75,101,121]},{"type":"update","timestamp":"2019-01-08T19:56:01.479Z","topic":"acmemart_update_order","partition":0,"offset":159,"key":[75,101,121]}]}
 ```
+
+
+
 
 ## Analyze API consumption 
 
