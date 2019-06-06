@@ -456,6 +456,57 @@ Example Output:
 {"id":"f58d732c494dc8ce9c1d2dbdba8817dd","purchaseOrder":"5688471","shipTo":{"name":"Test Account","street":"1060 West Addison","city":"Chicago","state":"IL","zip":"60680"},"billTo":{"name":"Test Account","street":"1060 West Addison","city":"Chicago","state":"IL","zip":"60680"},"item":{"partNum":"AJ1-03","productName":"Red, Black & Green","quantity":"1","price":"103.99","shipDate":"2019-01-08T19:46:28.314Z"},"status_code":500,"last_update":"2019-01-08T19:56:01.479Z","history":[{"type":"initial","timestamp":"2019-01-08T19:46:29.350Z","topic":"kafka-nodejs-console-sample-topic","partition":0,"offset":334,"key":null},{"type":"update","timestamp":"2019-01-08T19:48:03.328Z","topic":"acmemart_update_order","partition":0,"offset":151,"key":[75,101,121]},{"type":"update","timestamp":"2019-01-08T19:50:01.362Z","topic":"acmemart_update_order","partition":0,"offset":153,"key":[75,101,121]},{"type":"update","timestamp":"2019-01-08T19:52:01.403Z","topic":"acmemart_update_order","partition":0,"offset":155,"key":[75,101,121]},{"type":"update","timestamp":"2019-01-08T19:54:01.438Z","topic":"acmemart_update_order","partition":0,"offset":157,"key":[75,101,121]},{"type":"update","timestamp":"2019-01-08T19:56:01.479Z","topic":"acmemart_update_order","partition":0,"offset":159,"key":[75,101,121]}]}
 ```
 
+## Analyze API consumption 
+
+# Launch the API Manager and navigate to Analytics
+
+1.  Sign on to the API Manager UI of IBM API Connect
+
+2.  Click on the tile entitled `Manage Catalogs`.
+
+3.  Click on the tile representing the catalog you have published the REST facades to (eg. `Sandbox`)
+
+4.  From the catalog configuration screen, hover over the icons on the left, and click on the `Analytics` tab.
+
+![](./images/cipdemo/analytics_tab.gif)
+
+# Explore the Analytics
+
+1. After clicking the `Analytics` tab, you are presented with a list of dashboards.  
+
+    Those tagged with `Admin` are pre-defined by IBM. You can clone (copy) a dashboard and then edit it - instructions for doing this are provided later below. You can add your own dashboards from scratch, and you can import dashboards that have been exported from another API Manager.
+
+2. Click on the `API Default` dashboard.
+
+3. This default dashboard gives some general information about Errors, Status Codes, Response Times and number of API Calls.
+    
+    Take a while to explore this dashboard and its visualisations. Note, and experiment with, the following:
+    1. Use your browser's zoom capability to zoom in or out, until the screen size is comfortable for you.
+    2. At the top right of the screen, click the time range (the default is `Last 15 minutes`) to examine the Time Range options. (Notice that when you are choosing the Time Range, you can also set the autorefresh time by clicking `Auto-refresh`.)
+    3. Note that when you click on an area of some of the visualisations, this adds a filter to the list of filters along the top of the screen. Try this with the `Status Codes (Detailed)` graph. To remove a filter, hover over it and click the dustbin icon. Once you have one or more filters defined, note that you can toggle the `Actions` option on the right-hand side, to enable and disable filters.
+    4. Note the Search box at the top, which - as it says - uses "lucerne query syntax". Try searching for _status_code:200_, and _status_code:300_. (Make sure you hit `Enter` after changing the search term.)
+    5. Take time to hover over various areas of the visualisations, and click through, to investigate other options.
+
+
+4. When you have finished exploring the `API Default` dashboard, click `Clone` at the top to make a copy of this dashboard. Give the cloned dashboard your own unique name (eg "My Clone of API Default") and confirm it.
+5. Notice now that the dashboard name along the top has changed, and you also have an `Edit` button along the top. Click this `Edit` button.
+6. You are now able to edit the look and feel of the dashboard as a whole - these changes should then be saved for you under its new name.  
+
+    Explore the following options:
+    1. Use the `Add` button to add a visualisation or a Saved Search.
+    2.  Use the four-arrows icon to move a visualisation.
+    3.  Use the cross icon to remove a visualisation.
+    4.  Drag the bottom-right corner of a visualisation to resize it.
+    5.  Explore other options.
+    
+7. Once you have finished editing your dashboard, click `Save` to save it, and confirm.
+8.  Click `Dashboard` in the dashboard breadcrumb trail at the top, to go back to the list of dashboards.
+
+
+9.  Notice that your dashboard is now in the list. It has been tagged with `Catalog`, to distinguish it from the admin-provided ones.
+
+10.  Explore the other dashboards to see what visualisations they include.
+
 ### Conclusion
 You have put together the main building blocks for the combined CIP Demonstration.  The only things left are to plug in the mobile app to make these api calls, and make a minor change to the microservices to use the on-premises based event streams versus the cloud.  There is also a Watson Assistant (aka Conversations) bit that will be added as well. Keep an eye out for further sessions, as all of these items will be covered in a forthcoming remote enablement session later in this quarter. 
 
