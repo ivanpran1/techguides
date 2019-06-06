@@ -458,7 +458,7 @@ Example Output:
 
 ## Analyze API consumption 
 
-# Launch the API Manager and navigate to Analytics
+### Launch the API Manager and navigate to Analytics
 
 1.  Sign on to the API Manager UI of IBM API Connect
 
@@ -470,7 +470,7 @@ Example Output:
 
 ![](./images/cipdemo/analytics_tab.gif)
 
-# Explore the Analytics
+### Explore the Analytics
 
 1. After clicking the `Analytics` tab, you are presented with a list of dashboards.  
 
