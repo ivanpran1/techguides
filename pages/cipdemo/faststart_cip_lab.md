@@ -332,8 +332,7 @@ You can use MQ Console to check if the message is in NEWORDER.ES queue, using:
 **Note** at the time of the writing of this lab, there is an issue with API Connect that must be resolved before continuing, but fortunately is easily fixed.
 
 1. Open the main Admin console for APIC by opening a new browser tab on the Developer machine to `https://mgmt.10.0.0.5.nip.io/admin`
-2. login with the credentials of `admin`/`7Ir0n-hide`.  T
-3. 
+2. login with the credentials of `admin`/`7Ir0n-hide`
 
 Create APIs for each of the inventory, order and AcmeMart APIs.
 
@@ -347,7 +346,11 @@ Where `yourapp ip` and `your port` is the port that ICP has put your Utility App
 
 ![](./images/cipdemo/invoke.gif)
 
-Test your APIs in the test tool inside of API Connect.  For the `AcmeMartUtilityAPI`, the quickest way to do this is open up the Assembly view of the AcmeMart and select the `/Utilities/Ping` API.  It requires no arguments.
+Test your APIs in the test tool inside of API Connect.  
+
+![](./images/cipdemo/test_api.gif)
+
+For the `AcmeMartUtilityAPI`, the quickest way to do this is open up the Assembly view of the AcmeMart and select the `/Utilities/Ping` API.  It requires no arguments.
 
 Before:
 
